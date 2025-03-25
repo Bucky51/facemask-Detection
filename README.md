@@ -1,95 +1,112 @@
 
-# 😷 Face Mask Detection
+# Face Mask Detection using CNN and OpenCV
 
-## 📖 Overview
-This project is a **Face Mask Detection System** built using Python, OpenCV, and deep learning. It can detect whether a person is wearing a mask or not in real-time using a webcam. The system leverages a pre-trained deep learning model to classify faces with or without masks.
+## 📌 Project Description
+This project is a deep learning-based face mask detection system. It uses a Convolutional Neural Network (CNN) model built with TensorFlow and Keras to detect whether a person in an image or video is wearing a mask or not. The system also integrates OpenCV for real-time face detection and classification.
+
+
+## 🛠 Technologies Used
+- Python
+- TensorFlow / Keras
+- OpenCV
+- Numpy
+- Haar Cascade Classifier
 
 ---
 
 ## 📂 Project Structure
 ```
-facemask-Detection/
-│
-├── dataset/                 # Contains mask and no-mask image dataset
-├── face_detector/           # Pre-trained face detection model (Caffe model)
-├── mask_detector.model      # Trained Keras model for mask detection
-├── detect_mask_video.py     # Script to run real-time mask detection
-├── train_mask_detector.py   # Script to train the mask detection model
-├── requirements.txt         # Python dependencies
-└── README.md                # Project documentation
+├── face.py                      # Real-time detection script
+├── model.py                     # Model training script
+├── mymodel.h5                   # Trained CNN model
+├── haarcascade_frontalface_default.xml  # Haar Cascade for face detection
+├── new.JPG                      # Sample image for testing
+├── requirements.txt             # Python dependencies
+└── README.md                    # Project documentation
 ```
 
 ---
 
-## 🛠️ Installation
-
-### 1. Clone the Repository
-```bash
+## 🔧 Installation & Setup
+1. **Clone the repository**
+```
 git clone https://github.com/Bucky51/facemask-Detection.git
 cd facemask-Detection
 ```
 
-### 2. Install Required Libraries
-```bash
+2. **Install the dependencies**
+```
 pip install -r requirements.txt
 ```
 
-### 3. Download Face Detection Model Files (if not already in `face_detector/`)
-- `deploy.prototxt`
-- `res10_300x300_ssd_iter_140000.caffemodel`
+3. **Download the Haar Cascade XML**
+Ensure `haarcascade_frontalface_default.xml` is in the working directory.
 
-You can download them from the official OpenCV repository:  
-[OpenCV Face Detector](https://github.com/opencv/opencv/tree/master/samples/dnn/face_detector)
-
-Place them in the `face_detector/` directory.
-
----
-
-## 🚀 Usage
-
-### Run Real-Time Mask Detection
-```bash
-python detect_mask_video.py
+4. **Run the model training (Optional)**
 ```
-This will open your webcam and start detecting faces with or without masks in real-time.
-
-### Optional: Train the Model
-If you want to retrain the mask detection model:
-```bash
-python train_mask_detector.py
+python model.py
 ```
-Ensure the dataset is properly structured before training.
+It saves the trained model as `mymodel1.h5`.
+
+5. **Run the face mask detection**
+```
+python face.py
+```
 
 ---
 
-## 🧠 Technologies Used
-- Python 3.x
-- OpenCV
-- Keras / TensorFlow
-- NumPy
-- Imutils
+## 🧠 Model Architecture
+- 3 Convolutional layers (32 filters each)
+- MaxPooling after each Conv layer
+- Flatten layer
+- Dense layer with 100 neurons (ReLU)
+- Output layer (Sigmoid for binary classification)
 
 ---
 
-## 📈 Future Enhancements
-- Improve accuracy with a larger dataset
-- Integrate with CCTV/video surveillance systems
-- Deploy as a web application or mobile app
-- Send alerts for mask violations
+## ✅ Features
+- Real-time face mask detection
+- Trained on custom dataset
+- Simple and easy-to-use
+- Highly customizable
+
+---
+
+## 💻 Requirements
+See `requirements.txt`.  
+Install the following major libraries:
+```
+TensorFlow==2.5.0
+Keras==2.4.3
+OpenCV-python==4.4.0.46
+numpy==1.19.4
+```
+
+---
+
+## 📌 Sample Usage
+```python
+# Inside face.py
+model = load_model('mymodel.h5')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+```
+Run the script to perform detection on the webcam feed or images.
+
+---
+
+## 🚀 Future Improvements
+- Improve model accuracy with more dataset
+- Add multi-class detection (incorrect mask wearing)
+- Deploy as a web app or mobile app
+
+---
+
+## 🙌 Acknowledgements
+- TensorFlow and Keras team
+- OpenCV community
+- Dataset contributors
 
 ---
 
 ## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 🙌 Acknowledgments
-- OpenCV for the face detection model
-- Keras/TensorFlow for the deep learning framework
-- Dataset contributions from online open-source resources
-
----
-
-## 💻 Author
-Developed by [Bucky51](https://github.com/Bucky51)
+This project is for educational purposes only.
